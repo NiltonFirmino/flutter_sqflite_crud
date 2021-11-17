@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         // Remove the debug banner
         debugShowCheckedModeBanner: false,
-        title: 'Kindacode.com',
+        title: 'CRUD Flutter e SQFlite',
         theme: ThemeData(
-          primarySwatch: Colors.orange,
+          primarySwatch: Colors.blueGrey,
         ),
         home: const HomePage());
   }
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     TextField(
                       controller: _titleController,
-                      decoration: const InputDecoration(hintText: 'Title'),
+                      decoration: const InputDecoration(hintText: 'Evento'),
                     ),
                     const SizedBox(
                       height: 10,
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                     TextField(
                       controller: _descriptionController,
                       decoration:
-                          const InputDecoration(hintText: 'Description'),
+                          const InputDecoration(hintText: 'Descrição'),
                     ),
                     const SizedBox(
                       height: 20,
@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                         // Close the bottom sheet
                         Navigator.of(context).pop();
                       },
-                      child: Text(id == null ? 'Create New' : 'Update'),
+                      child: Text(id == null ? 'Novo Evento' : 'Atualizar Evento'),
                     )
                   ],
                 ),
@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> {
   void _deleteItem(int id) async {
     await SQLHelper.deleteItem(id);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text('Successfully deleted a journal!'),
+      content: Text('Evento deletado com sucesso!'),
     ));
     _refreshJournals();
   }
@@ -145,7 +145,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Kindacode.com'),
+        title: const Text('CRUD - Flutter e SQFlite'),
       ),
       body: _isLoading
           ? const Center(
@@ -154,7 +154,7 @@ class _HomePageState extends State<HomePage> {
           : ListView.builder(
               itemCount: _journals.length,
               itemBuilder: (context, index) => Card(
-                color: Colors.orange[200],
+                color: Colors.blueGrey[200],
                 margin: const EdgeInsets.all(15),
                 child: ListTile(
                     title: Text(_journals[index]['title']),
